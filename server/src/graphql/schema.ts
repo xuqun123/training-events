@@ -2,9 +2,11 @@ const {buildSchema} = require('graphql')
 
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
+  scalar DateTime
+
   type Query {
-    hello: String
-    events: [Event]
+    events(keyword: String, location: String, startDate: DateTime, endDate: DateTime): [Event]
+    event(title: String!): Event
   }
 
   type Event {

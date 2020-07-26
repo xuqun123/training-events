@@ -11,6 +11,7 @@ app.use(
     schema: schema,
     rootValue: resolvers,
     graphiql: true,
+    context: {},
   })
 )
 app.listen(3000)
