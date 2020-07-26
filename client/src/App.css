@@ -6,3 +6,11 @@
   margin-top: 82%;
   text-align: center;
 }
+
+.search-form .field {
+  width: 100%;
+}
+
+.search-btns .field {
+  width: fit-content;
+}

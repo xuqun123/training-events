@@ -14,10 +14,12 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/semantic-ui": "^2.2.7",
     "graphql": "^15.3.0",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-semantic-ui-datepickers": "^2.8.0",
     "semantic-ui-react": "^1.0.0",
     "typescript": "~3.7.2"
   },
