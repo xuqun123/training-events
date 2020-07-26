@@ -65,9 +65,3 @@ To run BE tests, run the following command in `/server` folder:
 ```
 yarn test
 ```
-
-# Notes
-
-Haven't implemented FE tests yet due to a weird error
-`Target container is not a DOM element` from `ReactDOM.render`, and cannot
-figure it out in short time.

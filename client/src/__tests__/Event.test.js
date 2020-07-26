@@ -1,24 +1,22 @@
 import React from 'react'
-import {render} from '@testing-library/react'
 import {MockedProvider} from '@apollo/client/testing'
 import {shallow} from 'enzyme'
 import * as Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-import {EVENTS_QUERY} from '../graphql/queries'
-import Events from '../components/Events'
+import {EVENT_QUERY} from '../graphql/queries'
+import Event from '../components/Event'
 
 Enzyme.configure({adapter: new Adapter()})
 
 const mocks = [
   {
     request: {
-      query: EVENTS_QUERY,
+      query: EVENT_QUERY,
     },
     result: {
       data: {
-        events: [
-          {
+        event: {
             Title: 'Place 1',
             Time: '2018-07-22T02:30:00.000Z',
             Image: 'http://example.com/image.png',
@@ -28,25 +26,6 @@ const mocks = [
               Country: 'Australia',
             },
           },
-          {
-            Title: 'Place 2',
-            Time: '2018-07-24T02:30:00.000Z',
-            Image: 'http://example.com/image.png',
-            Location: {
-              City: 'Cairns',
-              State: 'Queensland',
-              Country: 'Australia',
-            },
-            AvailableSeats: [
-              {
-                id: 'W25',
-              },
-              {
-                id: 'B29',
-              },
-            ],
-          },
-        ],
       },
     },
   },
@@ -55,9 +34,9 @@ const mocks = [
 test('render Events', () => {
   const wrapper = shallow(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <Events />
+      <Event />
     </MockedProvider>
   )
-
-  expect(wrapper.find(Events)).toBeDefined()
+  
+  expect(wrapper.find(Event)).toBeDefined()
 })

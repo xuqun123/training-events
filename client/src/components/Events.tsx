@@ -7,7 +7,7 @@ import EventType from '../interfaces/EventType'
 import {SearchVariablesType} from '../interfaces/SearchFormTypes'
 import EventItem from './EventItem'
 import Search from './Search'
-import {client} from '../index'
+import client from '../graphql/client'
 
 const Events: React.FC = () => {
   const [events, setEvents] = React.useState<EventType[]>([])

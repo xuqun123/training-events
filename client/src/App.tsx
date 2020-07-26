@@ -5,7 +5,7 @@ import Events from './components/Events'
 import Event from './components/Event'
 import Footer from './components/Footer'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import {client} from './index'
+import client from './graphql/client'
 
 import './App.css'
 
