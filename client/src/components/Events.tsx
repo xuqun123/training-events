@@ -1,34 +1,28 @@
 import React from 'react'
-import {List, Segment} from 'semantic-ui-react'
-import {useParams} from 'react-router-dom'
+import {List, Segment, Dimmer, Loader} from 'semantic-ui-react'
+import {useQuery} from '@apollo/client'
+
+import {EVENTS_QUERY} from '../graphql/queries'
+import EventType from '../interfaces/EventType'
+import EventItem from './EventItem'
 
 const Events: React.FC = () => {
-  let {title} = useParams()
+  const {loading, data} = useQuery(EVENTS_QUERY, {
+    variables: {},
+  })
+  if (loading)
+    return (
+      <Dimmer active>
+        <Loader>Loading ...</Loader>
+      </Dimmer>
+    )
 
   return (
     <Segment>
       <List divided relaxed>
-        <List.Item>
-          <List.Icon name="github" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header as="a">{title}</List.Header>
-            <List.Description as="a">Updated 10 mins ago</List.Description>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Icon name="github" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header as="a">Semantic-Org/Semantic-UI-Docs</List.Header>
-            <List.Description as="a">Updated 22 mins ago</List.Description>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Icon name="github" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header as="a">Semantic-Org/Semantic-UI-Meteor</List.Header>
-            <List.Description as="a">Updated 34 mins ago</List.Description>
-          </List.Content>
-        </List.Item>
+        {data?.events?.map((event: EventType, index: number) => (
+          <EventItem event={event} key={index} />
+        ))}
       </List>
     </Segment>
   )
