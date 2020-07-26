@@ -8,7 +8,6 @@ import {
 
 const Search: React.FC<SearchFormType> = ({handleSubmit}) => {
   const [variables, setVariables] = React.useState<SearchVariablesType>({})
-  const formRef = React.useRef(null)
 
   const handleChange = (e: any, {name, value}: {name: string; value: string}) =>
     setVariables({...variables, ...{[name]: value}})
@@ -16,11 +15,7 @@ const Search: React.FC<SearchFormType> = ({handleSubmit}) => {
   const handleReset = () => window.location.reload(false)
 
   return (
-    <Form
-      ref={formRef}
-      className="search-form"
-      onSubmit={() => handleSubmit(variables)}
-    >
+    <Form className="search-form" onSubmit={() => handleSubmit(variables)}>
       <Form.Group widths="equal">
         <Form.Field
           control={Input}
@@ -33,7 +28,6 @@ const Search: React.FC<SearchFormType> = ({handleSubmit}) => {
           control={Input}
           label="Location"
           name="location"
-          value={variables.location}
           placeholder="please enter a city, state or country"
           onChange={handleChange}
         />

@@ -12,10 +12,10 @@ const resolvers = {
     startDate,
     endDate,
   }: {
-    keyword: string
-    location: string
-    startDate: Date
-    endDate: Date
+    keyword?: string
+    location?: string
+    startDate?: Date
+    endDate?: Date
   }): EventType[] => {
     // inject dump events data first
     let events = eventsData

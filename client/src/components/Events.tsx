@@ -11,7 +11,6 @@ import {client} from '../index'
 
 const Events: React.FC = () => {
   const [events, setEvents] = React.useState<EventType[]>([])
-  const [searchLoading, setSearchLoading] = React.useState<boolean>(false)
 
   const {loading} = useQuery(EVENTS_QUERY, {
     variables: {},
@@ -21,7 +20,7 @@ const Events: React.FC = () => {
     onError: (error: Error) => console.log(error),
   })
 
-  if (loading || searchLoading)
+  if (loading)
     return (
       <Dimmer active>
         <Loader>Loading ...</Loader>
@@ -29,7 +28,6 @@ const Events: React.FC = () => {
     )
 
   const handleSubmit = (variables: SearchVariablesType) => {
-    setSearchLoading(true)
     client
       .query({
         query: EVENTS_QUERY,
@@ -37,7 +35,6 @@ const Events: React.FC = () => {
       })
       .then((result: any) => {
         if (result?.data?.events) setEvents(result.data.events)
-        setSearchLoading(false)
       })
       .catch((error: Error) => console.log(error))
   }
