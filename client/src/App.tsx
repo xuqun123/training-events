@@ -1,26 +1,31 @@
 import {ApolloProvider} from '@apollo/client'
 import React from 'react'
+import Nav from './components/Nav'
+import Events from './components/Events'
+import Event from './components/Event'
+import Footer from './components/Footer'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {client} from './index'
 
-import logo from './logo.svg'
 import './App.css'
 
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Training Events
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="app-container">
+          <Nav />
+          <Switch>
+            <Route path={`/events/:title`}>
+              <Event />
+            </Route>
+            <Route path="/">
+              <Events />
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
     </ApolloProvider>
   )
 }
